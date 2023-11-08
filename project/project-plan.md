@@ -46,7 +46,7 @@ Population country wise with respect to age group
 4. Deriving Conclusions [#4][i4]
 5. Final Analysis (Optional) [#5][i5] (I will create it if it's required)
 
-[i1]: https://github.com/vinaychavda/made-template/issues/1
-[i2]: https://github.com/vinaychavda/made-template/issues/2
-[i3]: https://github.com/vinaychavda/made-template/issues/3
-[i4]: https://github.com/vinaychavda/made-template/issues/4
+[i1]: https://github.com/vinaychavda/made-template/issues/1#issue-1982201765
+[i2]: https://github.com/vinaychavda/made-template/issues/2#issue-1982203615
+[i3]: https://github.com/vinaychavda/made-template/issues/3#issue-1982204652
+[i4]: https://github.com/vinaychavda/made-template/issues/4#issue-1982205780
