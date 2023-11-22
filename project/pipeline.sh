@@ -1,2 +1,2 @@
 #!/bin/bash
-python /project/datapipeline.py
+python project/pipeline.py
