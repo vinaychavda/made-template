@@ -2,27 +2,28 @@
 
 ## Title
 <!-- Give your project a short title. -->
-A Comparative Analysis of Country-Wise Population and CO2 Emissions from Cars.
+A Comparative Analysis of Country-Wise Population and Total Emissions.
 
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-1. Are there significant variations in CO2 emissions from cars across countries with different population densities?
+1. Are there significant variations in total emissions from various sectors across countries with different population densities?
 
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-Studying the relationship between a country's population and CO2 emissions from the transportation sector is of paramount importance. The transportation sector is a major contributor to global greenhouse gas emissions, making it a critical factor in climate change. As the world's population continues to grow, there is a corresponding increase in the demand for transportation, intensifying the environmental impact.
+Studying the relationship between a country's population and total emissions from various sectors is of paramount importance. Emissions from sectors such as transportation, industry, and energy production significantly contribute to global environmental issues. As the world's population continues to grow, understanding the impact of these emissions becomes crucial for sustainable development.
 
-Understanding this relationship is essential for several reasons. First, it informs policymakers and government bodies in designing effective regulations and incentives to reduce emissions. Additionally, it contributes to the broader goal of achieving environmental sustainability, particularly in the context of transportation. High levels of CO2 emissions have direct health consequences due to air pollution, making this research critical for public health and overall quality of life. Moreover, it aids in resource allocation, guiding investments in cleaner technologies and sustainable urban planning.
+This research is essential for informing policymakers and government bodies in designing effective regulations and incentives to mitigate emissions. It contributes to the broader goal of achieving environmental sustainability, guiding investments in cleaner technologies and sustainable practices. Additionally, it addresses public health concerns associated with high emission levels.
 
-By addressing this issue, your project can help reduce the global environmental footprint, promote sustainable practices, and contribute to our collective responsibility to combat climate change and ensure a healthier and more environmentally responsible future.
+By analyzing the relationship between population density and total emissions, this project aims to provide valuable insights that can contribute to global efforts to combat climate change and promote environmentally responsible practices.
+
 
 ## Datasources
 
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
-### Datasource1: ExampleSource
+### Datasource1: Population
 * Metadata URL: https://www.eea.europa.eu/en
 * Data URL: https://www.eea.europa.eu/en/datahub/datahubitem-view/5d252092-d328-40d8-bca2-c0734bd6143b
 * Data Type: CSV
@@ -32,6 +33,7 @@ CO2 Emission from car in european countries.
 ### Datasource1: ExampleSource
 * Metadata URL: https://ec.europa.eu/eurostat/web/main/home
 * Data URL: https://ec.europa.eu/eurostat/databrowser/view/tps00010/default/table?lang=en
+https://ec.europa.eu/eurostat/databrowser/view/tps00010/default/table?lang=en
 * Data Type: CSV
 
 Population country wise with respect to age group
