@@ -2,21 +2,21 @@
 
 ## Title
 <!-- Give your project a short title. -->
-A Comparative Analysis of Country-Wise Population and Total Emissions.
+A Comparative Analysis of Country-Wise Population and Total CO2 Emissions.
 
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-1. Are there significant variations in total emissions from various sectors across countries with different population densities?
+1. Are there significant variations in total CO2 emissions from various sectors across countries with different population densities?
 
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-Studying the relationship between a country's population and total emissions from various sectors is of paramount importance. Emissions from sectors such as transportation, industry, and energy production significantly contribute to global environmental issues. As the world's population continues to grow, understanding the impact of these emissions becomes crucial for sustainable development.
+Studying the relationship between a country's population and total CO2 emissions from various sectors is of paramount importance. Emissions from sectors such as transportation, industry, and energy production significantly contribute to global environmental issues. As the world's population continues to grow, understanding the impact of these emissions becomes crucial for sustainable development.
 
 This research is essential for informing policymakers and government bodies in designing effective regulations and incentives to mitigate emissions. It contributes to the broader goal of achieving environmental sustainability, guiding investments in cleaner technologies and sustainable practices. Additionally, it addresses public health concerns associated with high emission levels.
 
-By analyzing the relationship between population density and total emissions, this project aims to provide valuable insights that can contribute to global efforts to combat climate change and promote environmentally responsible practices.
+By analyzing the relationship between population density and total CO2 emissions, this project aims to provide valuable insights that can contribute to global efforts to combat climate change and promote environmentally responsible practices.
 
 
 ## Datasources
@@ -24,19 +24,14 @@ By analyzing the relationship between population density and total emissions, th
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
 ### Datasource1: Population
-* Metadata URL: https://www.eea.europa.eu/en
-* Data URL: https://www.eea.europa.eu/en/datahub/datahubitem-view/5d252092-d328-40d8-bca2-c0734bd6143b
+* Metadata URL: https://www.kaggle.com/
+* Data URL: https://www.kaggle.com/datasets/iamsouravbanerjee/world-population-dataset?select=world_population.csv
 * Data Type: CSV
 
-CO2 Emission from car in european countries.
-
-### Datasource1: ExampleSource
-* Metadata URL: https://ec.europa.eu/eurostat/web/main/home
-* Data URL: https://ec.europa.eu/eurostat/databrowser/view/tps00010/default/table?lang=en
-https://ec.europa.eu/eurostat/databrowser/view/tps00010/default/table?lang=en
+### Datasource1: Country wise CO2 Emission
+* Metadata URL: https://www.kaggle.com/
+* Data URL: https://www.kaggle.com/datasets/thedevastator/global-fossil-co2-emissions-by-country-2002-2022/data?select=GCB2022v27_MtCO2_flat.csv
 * Data Type: CSV
-
-Population country wise with respect to age group
 
 ## Work Packages
 
