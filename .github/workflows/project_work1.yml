@@ -45,5 +45,8 @@ jobs:
           echo "Script failed with exit code $exit_code."
           exit $exit_code
         fi
-
+    - name: Check file existence
+      uses: andstor/file-existence-action@v2
+      with:
+          files: "data/world_population.csv, data/co2_emission_test1.db, data/world_population.csv, data/population_data.db"
     
