@@ -15,7 +15,7 @@ jobs:
     - name: Setup Kaggle
       run: |
         mkdir $HOME/.kaggle
-        echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > $HOME/.kaggle/kaggle.json
+        echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > kaggle.json
         chmod 600 $HOME/.kaggle/kaggle.json
         chmod 600 project/kaggle.json
 
