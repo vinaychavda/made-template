@@ -18,9 +18,7 @@ jobs:
           mkdir $HOME/.kaggle
           mv kaggle.json ~/.kaggle/
           chmod 600 ~/.kaggle/kaggle.json
-    env:
-      KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
-      
+    
     - name: Run shell script
       run: |
        bash project/pipeline.sh
@@ -31,3 +29,7 @@ jobs:
           echo "Script failed with exit code $exit_code."
           exit $exit_code
         fi
+
+    env:
+      KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
+  
