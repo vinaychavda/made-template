@@ -12,13 +12,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    # - name: Setup Kaggle
-    #   run: |
-    #     mkdir $HOME/.kaggle
-    #     echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > $HOME/.kaggle/kaggle.json
-    #     chmod 600 ~/.kaggle/kaggle.json
-
-     - name: Set up Kaggle
+    - name: Set up Kaggle
       run: |
         mkdir -p /home/runner/.kaggle/
         echo "$KAGGLE_CONFIG_FILE" > /home/runner/.kaggle/kaggle.json
