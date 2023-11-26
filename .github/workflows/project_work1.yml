@@ -6,7 +6,7 @@ on:
       - feature/20231126/Vinay/project_work3
 
 jobs:
-  project - work - 3:
+  project-work-3:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
