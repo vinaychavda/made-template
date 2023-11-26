@@ -20,16 +20,6 @@ jobs:
           chmod 600 ~/.kaggle/kaggle.json
       env:
         KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
-
-    - name: Run Kaggle Script
-      run: |
-        export KAGGLE_USERNAME=$YOUR_USERNAME
-        export KAGGLE_KEY=$YOUR_KEY
-        python $GITHUB_WORKSPACE/path/to/your/kaggle_script.py
-        echo "KAGGLE_USERNAME: $KAGGLE_USERNAME, KAGGLE_KEY: $KAGGLE_KEY"
-      env:
-        YOUR_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-        YOUR_KEY: ${{ secrets.KAGGLE_KEY }}
           
     - name: Run shell script
       run: |
