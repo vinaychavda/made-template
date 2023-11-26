@@ -7,19 +7,20 @@ on:
 
 jobs:
   project-work-3:
-    # runs-on: ubuntu-latest
-    # steps:
-    # - name: Checkout repository
-    #   uses: actions/checkout@v2
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-    # - name: Set up Kaggle
-    #   run: |
-    #       echo "$KAGGLE_CONFIG_FILE" > kaggle.json
-    #       mkdir -p ~/.kaggle
-    #       mv kaggle.json ~/.kaggle/
-    #       chmod 600 ~/.kaggle/kaggle.json
-    # env:
-    #   KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
+    - name: Set up Kaggle
+      run: |
+          echo "$KAGGLE_CONFIG_FILE" > kaggle.json
+          mkdir -p ~/.kaggle
+          mv kaggle.json ~/.kaggle/
+          chmod 600 ~/.kaggle/kaggle.json
+    env:
+      KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
+  run-kaggle-script:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +34,7 @@ jobs:
 
     - name: Run Kaggle Script
       run: python path/to/your/kaggle_script.py
-
+      
   run-pipeline:
     runs-on: ubuntu-latest
     steps:
