@@ -20,10 +20,6 @@ jobs:
       env:
         KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
 
-    - name: Run Kaggle Script
-      run: |
-        python path/to/your/kaggle_script.py
-
     - name: Run shell script
       run: |
        bash project/pipeline.sh
