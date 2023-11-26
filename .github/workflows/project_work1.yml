@@ -30,13 +30,6 @@ jobs:
         YOUR_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
         YOUR_KEY: ${{ secrets.KAGGLE_KEY }}
 
-    - name: Debug
-      run: |
-      echo "KAGGLE_USERNAME: $KAGGLE_USERNAME
-      env:
-        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-          
     - name: Run shell script
       run: |
        bash project/pipeline.sh
