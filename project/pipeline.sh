@@ -2,4 +2,4 @@
 
 pip install --upgrade pip
 pip install -r ./project/requirements.txt
-python project/pipeline.py
+python3 project/pipeline.py
