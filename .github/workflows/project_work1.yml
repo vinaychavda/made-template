@@ -25,7 +25,7 @@ jobs:
       run: |
         export KAGGLE_USERNAME=$YOUR_USERNAME
         export KAGGLE_KEY=$YOUR_KEY
-        python path/to/your/kaggle_script.py
+        python $GITHUB_WORKSPACE/path/to/your/kaggle_script.py
         echo "KAGGLE_USERNAME: $KAGGLE_USERNAME, KAGGLE_KEY: $KAGGLE_KEY"
       env:
         YOUR_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
