@@ -12,15 +12,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Kaggle
-      run: |
-          echo "$KAGGLE_CONFIG_FILE" > kaggle.json
-          mkdir $HOME/.kaggle
-          mv kaggle.json ~/.kaggle/
-          chmod 600 ~/.kaggle/kaggle.json
-      env:
-        KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
-
     - name: Setup Kaggle
       run: |
         mkdir $HOME/.kaggle
