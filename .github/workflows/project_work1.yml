@@ -20,6 +20,7 @@ jobs:
           chmod 600 ~/.kaggle/kaggle.json
     env:
       KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
+      
     - name: Run shell script
       run: |
        bash project/pipeline.sh
@@ -30,20 +31,3 @@ jobs:
           echo "Script failed with exit code $exit_code."
           exit $exit_code
         fi
-
-  # run-pipeline:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v2
-
-  #   - name: Run shell script
-  #     run: |
-  #      bash project/pipeline.sh
-  #       exit_code=$?
-  #       if [ $exit_code -eq 0 ]; then
-  #         echo "Script executed successfully."
-  #       else
-  #         echo "Script failed with exit code $exit_code."
-  #         exit $exit_code
-  #       fi
