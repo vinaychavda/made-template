@@ -20,7 +20,6 @@ jobs:
     - name: Run Pipeline
       run: |
         chmod +x ./project/pipeline.sh
-        ./project/pipeline.sh
 
     - name: Run shell script
       run: |
