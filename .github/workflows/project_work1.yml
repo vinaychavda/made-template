@@ -20,9 +20,9 @@ jobs:
           chmod 600 ~/.kaggle/kaggle.json
     env:
       KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
+
    run-kaggle-script:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
