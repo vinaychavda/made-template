@@ -18,6 +18,8 @@ jobs:
           mkdir $HOME/.kaggle
           mv kaggle.json ~/.kaggle/
           chmod 600 ~/.kaggle/kaggle.json
+      env:
+        KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
     
     
     - name: Run Kaggle Script
@@ -27,7 +29,6 @@ jobs:
         python path/to/your/kaggle_script.py
         
       env:
-        KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
         YOUR_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
         YOUR_KEY: ${{ secrets.KAGGLE_KEY }}
 
