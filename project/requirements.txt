@@ -1,3 +1,6 @@
-pandas==1.5.3
-SQLAlchemy==2.0.23
-kaggle==1.5.16
+pandas
+numpy
+pytest
+pytest-dependency
+openpyxl
+kaggle
