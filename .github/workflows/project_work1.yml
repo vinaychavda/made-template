@@ -15,7 +15,7 @@ jobs:
     - name: Set up Kaggle
       run: |
           echo "$KAGGLE_CONFIG_FILE" > kaggle.json
-          mkdir -p ~/.kaggle
+          mkdir $HOME/.kaggle
           mv kaggle.json ~/.kaggle/
           chmod 600 ~/.kaggle/kaggle.json
     env:
