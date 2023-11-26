@@ -1,0 +1,38 @@
+name: Project Work 3 Kaggle Export
+
+on:
+  push:
+    branches:
+      - feature/20231126/Vinay/project_work3
+
+jobs:
+  your_job_name:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Kaggle
+        run: |
+          echo "$KAGGLE_CONFIG_FILE" > kaggle.json
+          mkdir -p ~/.kaggle
+          mv kaggle.json ~/.kaggle/
+          chmod 600 ~/.kaggle/kaggle.json
+      env:
+        KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run shell script
+      run: |
+       bash project/pipeline.sh
+        exit_code=$?
+        if [ $exit_code -ne 0 ]; then
+          echo "Error: The script exited with a non-zero status code: $exit_code"
+          exit $exit_code
+        fi
