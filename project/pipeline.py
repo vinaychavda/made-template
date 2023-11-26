@@ -22,7 +22,7 @@ def save_to_csv_and_sql(data, csv_path, sql_path, table_name):
 
 if __name__ == "__main__":
     api = KaggleApi()
-    api.authenticate(username='your_kaggle_username', key='your_kaggle_api_key')
+    api.authenticate()
     
     # Download and extract CO2 emission dataset
     api.dataset_download_file('thedevastator/global-fossil-co2-emissions-by-country-2002-2022/data','GCB2022v27_MtCO2_flat.csv')
