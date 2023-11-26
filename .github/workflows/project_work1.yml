@@ -6,25 +6,23 @@ on:
       - feature/20231126/Vinay/project_work3
 
 jobs:
-  your_job_name:
+  project - work - 3:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Kaggle
-        run: |
+    - name: Set up Kaggle
+      run: |
           echo "$KAGGLE_CONFIG_FILE" > kaggle.json
           mkdir -p ~/.kaggle
           mv kaggle.json ~/.kaggle/
           chmod 600 ~/.kaggle/kaggle.json
-      env:
-        KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
+    env:
+      KAGGLE_CONFIG_FILE: ${{ secrets.KAGGLE_CONFIG_FILE }}
 
   run-script:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
