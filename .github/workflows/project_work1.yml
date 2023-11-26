@@ -31,7 +31,8 @@ jobs:
         YOUR_KEY: ${{ secrets.KAGGLE_KEY }}
 
     - name: Debug
-      run: echo "KAGGLE_USERNAME: $KAGGLE_USERNAME
+      run: |
+      echo "KAGGLE_USERNAME: $KAGGLE_USERNAME
       env:
         KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
         KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
