@@ -17,6 +17,11 @@ jobs:
         mkdir $HOME/.kaggle
         echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > $HOME/.kaggle/kaggle.json
         chmod 600 $HOME/.kaggle/kaggle.json
+      
+    - name: Run Pipeline
+      run: |
+        chmod u+r+x ./project/pipeline.sh
+        ./project/pipeline.sh
 
     - name: Run shell script
       run: |
