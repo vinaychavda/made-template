@@ -30,11 +30,6 @@ jobs:
         mv kaggle.json /home/runner/.kaggle/kaggle.json
         chmod 600 /home/runner/.kaggle/kaggle.json
 
-    - name: Run Pipeline
-      run: |
-        chmod +x ./project/pipeline.sh
-        ./project/pipeline.sh
-
     - name: Run shell script
       run: |
        bash project/pipeline.sh
@@ -45,6 +40,7 @@ jobs:
           echo "Script failed with exit code $exit_code."
           exit $exit_code
         fi
+
     - name: Check file existence
       uses: andstor/file-existence-action@v2
       with:
