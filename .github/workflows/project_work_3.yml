@@ -3,7 +3,7 @@ name: Project Work 3 Kaggle Export
 on:
   push:
     branches:
-      - main
+    - main
 
 jobs:
   project-work-3:
