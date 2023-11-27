@@ -1,6 +1,6 @@
 pandas
 numpy
+kaggle
 pytest
 pytest-dependency
 openpyxl
-kaggle

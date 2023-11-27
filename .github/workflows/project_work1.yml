@@ -3,7 +3,7 @@ name: Project Work 3 Kaggle Export
 on:
   push:
     branches:
-      - feature/20231126/Vinay/project_work3
+      - main
 
 jobs:
   project-work-3:
