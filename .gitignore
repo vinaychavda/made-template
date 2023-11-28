@@ -8,3 +8,5 @@
 *.vscode
 *.idea
 kaggle.json
+/__pycache__/*
+*.pyc
