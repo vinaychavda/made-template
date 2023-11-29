@@ -2,8 +2,6 @@ import shutil
 import sqlite3
 import zipfile
 import pandas as pd
-import time
-from typing import Callable, Any
 
 
 def extract_and_move_co2_data(old_name: str, new_name: str):
