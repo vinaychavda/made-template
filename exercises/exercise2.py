@@ -1,8 +1,9 @@
 import re
 import time
-from typing import Callable, Any
 import pandas as pd
 import sqlalchemy
+
+from project.misc.function import drop_invalid_col
 
 
 def extract_csv_from_url(url: str, max_attempts: int = 5, wait_time_before_retry: float = 5) -> pd.DataFrame:
@@ -31,18 +32,6 @@ def extract_csv_from_url(url: str, max_attempts: int = 5, wait_time_before_retry
         raise Exception(f'Failed to extract CSV from the provided URL: {url}')
 
     return dataframe
-
-
-def drop_invalid_col(df: pd.DataFrame, column: str, valid: Callable[[Any], bool]) -> pd.DataFrame:
-    try:
-        # Keep only rows where the specified column satisfies the validation function
-        df = df.loc[df[column].apply(valid)]
-    except KeyError:
-        raise KeyError(f'The specified column "{column}" does not exist in the DataFrame.')
-    except Exception as e:
-        raise Exception(f'An unexpected error occurred while dropping invalid rows: {e}')
-
-    return df
 
 
 if __name__ == '__main__':

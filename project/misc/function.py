@@ -23,3 +23,14 @@ def save_to_csv_and_sql(data, csv_path, sql_path, table_name):
     conn = sqlite3.connect(sql_path)
     data.to_sql(table_name, conn, index=False, if_exists='replace')
     conn.close()
+
+def drop_invalid_col(df: pd.DataFrame, column: str, valid: Callable[[Any], bool]) -> pd.DataFrame:
+    try:
+        # Keep only rows where the specified column satisfies the validation function
+        df = df.loc[df[column].apply(valid)]
+    except KeyError:
+        raise KeyError(f'The specified column "{column}" does not exist in the DataFrame.')
+    except Exception as e:
+        raise Exception(f'An unexpected error occurred while dropping invalid rows: {e}')
+
+    return df
