@@ -5,22 +5,43 @@ import pandas as pd
 import sqlalchemy
 
 
-def extract_csv_from_url(url: str, max_tries: int = 5, sec_wait_before_retry: float = 5) -> pd.DataFrame:
-    df = None
-    for i in range(1, max_tries + 1):
+def extract_csv_from_url(url: str, max_attempts: int = 5, wait_time_before_retry: float = 5) -> pd.DataFrame:
+    dataframe = None
+
+    for attempt in range(1, max_attempts + 1):
         try:
-            df = pd.read_csv(url, sep=';', decimal=',')
+            dataframe = pd.read_csv(url, sep=';', decimal=',')
             break
-        except:
-            print(f'Couldn\'t extract csv from given url! (Try {i}/{max_tries})')
-            if i < max_tries: time.sleep(sec_wait_before_retry)
-    if df is None:
-        raise Exception(f'Failed to extract csv from given url {url}')
-    return df
+        except pd.errors.EmptyDataError:
+            print(f'The CSV at the provided URL is empty! (Attempt {attempt}/{max_attempts})')
+            break
+        except pd.errors.ParserError:
+            print(f'Failed to parse the CSV from the provided URL! (Attempt {attempt}/{max_attempts})')
+        except pd.errors.HTTPError as e:
+            print(f'HTTPError: {e}. (Attempt {attempt}/{max_attempts})')
+        except pd.errors.RequestException as e:
+            print(f'RequestException: {e}. (Attempt {attempt}/{max_attempts})')
+        except Exception as e:
+            print(f'An unexpected error occurred: {e}. (Attempt {attempt}/{max_attempts})')
+
+        if attempt < max_attempts:
+            time.sleep(wait_time_before_retry)
+
+    if dataframe is None:
+        raise Exception(f'Failed to extract CSV from the provided URL: {url}')
+
+    return dataframe
 
 
 def drop_invalid_col(df: pd.DataFrame, column: str, valid: Callable[[Any], bool]) -> pd.DataFrame:
-    df = df.loc[df[column].apply(valid)]
+    try:
+        # Keep only rows where the specified column satisfies the validation function
+        df = df.loc[df[column].apply(valid)]
+    except KeyError:
+        raise KeyError(f'The specified column "{column}" does not exist in the DataFrame.')
+    except Exception as e:
+        raise Exception(f'An unexpected error occurred while dropping invalid rows: {e}')
+
     return df
 
 
