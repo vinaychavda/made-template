@@ -1,9 +1,8 @@
 import re
-import sqlalchemy
-from project.misc.constant import EXERCISE_2_URL
+import time
 from typing import Callable, Any
 import pandas as pd
-import time
+import sqlalchemy
 
 
 def extract_csv_from_url(url: str, max_tries: int = 5, sec_wait_before_retry: float = 5) -> pd.DataFrame:
@@ -26,25 +25,20 @@ def drop_invalid_col(df: pd.DataFrame, column: str, valid: Callable[[Any], bool]
 
 
 if __name__ == '__main__':
+    # Url to csv file
+    DATA_URL = 'https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV'
+
     # Extract dataframe from csv (with retries)
-    df = extract_csv_from_url('https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV')
+    df = extract_csv_from_url(DATA_URL)
 
     # Drop the Status column
     df = df.drop(columns=['Status'])
 
     # Drop rows with invalid values
     df = df.dropna()
-
-    # Valid "Verkehr" values are "FV", "RV", "nur DPN"
     df = drop_invalid_col(df, 'Verkehr', lambda x: x in ['FV', 'RV', 'nur DPN'])
-
-    # Valid "Laenge", "Breite" values are geographic coordinate system values between and including -90 and 90l̥
     df = drop_invalid_col(df, 'Laenge', lambda x: -90 < x < 90)
     df = drop_invalid_col(df, 'Breite', lambda x: -90 < x < 90)
-
-    # Valid "IFOPT" values follow this pattern: <exactly two characters>:<any amount of numbers>:<any amount of
-    # numbers><optionally another colon followed by any amount of numbers>
-    # This is not the official IFOPT standard, please follow our guidelines and not the official standard
     df = drop_invalid_col(df, 'IFOPT', lambda x: re.match('^..:[0-9]+:[0-9]+(:[0-9]+)?$', x) is not None)
 
     # Load dataframe into sqlite database, with matching datatypes
