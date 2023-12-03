@@ -1,3 +1,4 @@
+import os
 import shutil
 import sqlite3
 import zipfile
@@ -21,3 +22,11 @@ def save_to_csv_and_sql(data, csv_path, sql_path, table_name):
     conn = sqlite3.connect(sql_path)
     data.to_sql(table_name, conn, index=False, if_exists='replace')
     conn.close()
+
+
+def test_exercise(expected_output_file):
+    if os.path.isfile(expected_output_file):
+        print(f"\t[SUCCESS] Found output file {expected_output_file}")
+    else:
+        print(f"\t[ERROR] Can not find expected output file: {expected_output_file}.")
+        return
