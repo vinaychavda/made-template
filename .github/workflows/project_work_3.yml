@@ -39,5 +39,18 @@ jobs:
     - name: Check file existence
       uses: andstor/file-existence-action@v2
       with:
-          files: "data/world_population.csv, data/co2_emission_test1.db, data/world_population.csv, data/population_data.db"
+          files: "data/data.sqlite"
+
+    - name: Check SQLite Tables
+      run: |
+        # Replace 'your_db_file.db' with the actual name of your SQLite database file
+        # Replace 'abc' and 'xyz' with the table names you want to check
+        tables_exist=$(echo "SELECT name FROM sqlite_master WHERE type='table' AND (name='co2_emission_data' OR name='population_data');" | sqlite3 data/data.sqlite)
+        
+        if [ -n "$tables_exist" ]; then
+          echo "Tables 'co2_emission_data' and 'population_data' exist in the database."
+        else
+          echo "Tables 'co2_emission_data' and 'population_data' do not exist in the database."
+          exit 1
+        fi
     
