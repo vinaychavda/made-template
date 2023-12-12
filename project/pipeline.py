@@ -9,12 +9,11 @@ import zipfile
 DATA_SET_1 = 'thedevastator/global-fossil-co2-emissions-by-country-2002-2022/data'
 DATA_SET_1_CSV_FILE_NAME = 'GCB2022v27_MtCO2_flat.csv'
 DATA_SET_1_FOLDER_NAME = 'co2_emission'
-DATA_SET_1_DB_NAME = 'co2_emission.sqlite'
+DB_NAME = 'data.sqlite'
 DATA_SET_1_TABLE_NAME = 'co2_emission_data'
 
 DATA_SET_2 = 'iamsouravbanerjee/world-population-dataset'
 DATA_SET_2_CSV_FILE_NAME = 'world_population.csv'
-DATA_SET_2_DB_NAME = 'population_data.sqlite'
 DATA_SET_2_TABLE_NAME = 'population_data'
 
 encoding = 'latin-1'
@@ -40,7 +39,7 @@ def reshape_population_data(df):
 
 
 def co2_pipeline():
-    db_file_path = os.path.join(data_folder, DATA_SET_1_DB_NAME)
+    db_file_path = os.path.join(data_folder, DB_NAME)
     # Download and extract CO2 emission dataset
     api.dataset_download_file(DATA_SET_1, DATA_SET_1_CSV_FILE_NAME)
     extract_and_move_co2_data(DATA_SET_1_CSV_FILE_NAME + '.zip', DATA_SET_1_FOLDER_NAME + '.zip')
@@ -65,15 +64,19 @@ def co2_pipeline():
 
     # Delete downloaded .zip file
     zip_file_path = os.path.join(script_dir, DATA_SET_1_FOLDER_NAME + '.zip')
+    folder_path = os.path.join(script_dir, DATA_SET_1_FOLDER_NAME)
+
     try:
         os.remove(zip_file_path)
         print(f'Deleted {zip_file_path}')
+        shutil.rmtree(folder_path)
+        print(f'Deleted {folder_path}')
     except Exception as e:
         print(f"Error deleting files: {e}")
 
 
 def population_pipeline():
-    db_file_path = os.path.join(data_folder, DATA_SET_1_DB_NAME)
+    db_file_path = os.path.join(data_folder, DB_NAME)
 
     api.dataset_download_file(DATA_SET_2, DATA_SET_2_CSV_FILE_NAME)
     df_without_clean = pd.read_csv(DATA_SET_2_CSV_FILE_NAME, encoding=encoding)
