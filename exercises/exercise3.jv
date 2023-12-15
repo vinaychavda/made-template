@@ -5,6 +5,7 @@ pipeline CarsPipeline {
     }
 
     block PipelineTextFileInterpreter oftype TextFileInterpreter {
+        encoding: "utf-16";
     }
 
     block PipelineTextRangeSelector oftype TextRangeSelector {
