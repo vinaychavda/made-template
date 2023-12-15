@@ -5,7 +5,7 @@ pipeline CarsPipeline {
     }
 
     block PipelineTextFileInterpreter oftype TextFileInterpreter {
-        encoding: "utf-16";
+        encoding: "latin6";
     }
 
     block PipelineTextRangeSelector oftype TextRangeSelector {
@@ -17,7 +17,7 @@ pipeline CarsPipeline {
         delimiter: ";";
     }
 
-     block ColRenameA_C oftype CellWriter {
+    block ColRenameA_C oftype CellWriter {
         at: range A1:C1;
         write: ["date", "CIN", "name"];
     }
