@@ -1,0 +1,114 @@
+pipeline CarsPipeline {
+
+     block PipelineFileExtractor oftype HttpExtractor {
+        url: "https://www-genesis.destatis.de/genesis/downloads/00/tables/46251-0021_00.csv";
+    }
+
+    block PipelineTextFileInterpreter oftype TextFileInterpreter {
+        encoding: "utf8";
+    }
+
+    block PipelineTextRangeSelector oftype TextRangeSelector {
+        lineFrom: 7;
+        lineTo: 483;
+    }
+
+    block PipelineCSVInterpreter oftype CSVInterpreter {
+        delimiter: ";";
+    }
+
+     block ColRenameA_C oftype CellWriter {
+        at: range A1:C1;
+        write: ["date", "CIN", "name"];
+    }
+
+    block ColRenameM oftype CellWriter {
+        at: cell M1;
+        write: ["petrol"];
+    }
+
+    block ColRenameW oftype CellWriter {
+        at: cell W1;
+        write: ["diesel"];
+    }
+
+     block ColRenameAG oftype CellWriter {
+        at: cell AG1;
+        write: ["gas"];
+    }
+
+     block ColRenameAQ oftype CellWriter {
+        at: cell AQ1;
+        write: ["electro"];
+    }
+
+    block ColRenameBA oftype CellWriter {
+        at: cell BA1;
+        write: ["hybrid"];
+    }
+
+     block ColRenameBK oftype CellWriter {
+        at: cell BK1;
+        write: ["plugInHybrid"];
+    }
+
+     block ColRenameBU oftype CellWriter {
+        at: cell BU1;
+        write: ["others"];
+    }
+
+
+     constraint FiveCharForIdentificationNumber oftype LengthConstraint {
+        minLength: 5;
+        maxLength: 5;
+    }
+
+    valuetype CommunityIdentificationNumber oftype text {
+        constraints: [FiveCharForIdentificationNumber];
+    }
+
+    constraint positiveNumber oftype RangeConstraint {
+        lowerBound: 0;
+        lowerBoundInclusive: false;
+    }
+
+    valuetype PositiveInteger oftype integer {
+        constraints: [positiveNumber];
+    }
+
+    block PipelineTableInterpreter oftype TableInterpreter {
+        header: true;
+        columns: [
+            "date" oftype text,
+            "CIN" oftype CommunityIdentificationNumber,
+            "name" oftype text,
+            "petrol" oftype PositiveInteger,
+            "diesel" oftype PositiveInteger,
+            "gas" oftype PositiveInteger,
+            "electro" oftype PositiveInteger,
+            "hybrid" oftype PositiveInteger,
+            "plugInHybrid" oftype PositiveInteger,
+            "others" oftype PositiveInteger
+        ];
+    }
+
+    block PipelineLoader oftype SQLiteLoader {
+        table: "cars";
+        file: "./cars.sqlite";
+    }
+
+    PipelineFileExtractor
+        ->PipelineTextFileInterpreter
+        ->PipelineTextRangeSelector
+        ->PipelineCSVInterpreter
+        ->ColRenameA_C
+        ->ColRenameM
+        ->ColRenameW
+        ->ColRenameAG
+        ->ColRenameAQ
+        ->ColRenameBA
+        ->ColRenameBK
+        ->ColRenameBU
+        ->PipelineTableInterpreter
+        ->PipelineLoader;
+}
