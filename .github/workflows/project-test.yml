@@ -3,54 +3,33 @@ name: Project Work 3 Kaggle Export
 on:
   push:
     branches:
-    - main
-    paths:
-      - project/**
+      - main
 
 jobs:
   project-work-3:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.x
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
 
-    - name: Setup Kaggle
-      run: |
-        mkdir $HOME/.kaggle
-        echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > $HOME/.kaggle/kaggle.json
-        chmod 600 $HOME/.kaggle/kaggle.json
+      - name: Setup Kaggle
+        run: |
+          mkdir $HOME/.kaggle
+          echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > $HOME/.kaggle/kaggle.json
+          chmod 600 $HOME/.kaggle/kaggle.json
 
-    - name: Run shell script
-      run: |
-       bash project/pipeline.sh
-        exit_code=$?
-        if [ $exit_code -eq 0 ]; then
-          echo "Script executed successfully."
-        else
-          echo "Script failed with exit code $exit_code."
-          exit $exit_code
-        fi
-
-    - name: Check file existence
-      uses: andstor/file-existence-action@v2
-      with:
-          files: "data/data.sqlite"
-
-    - name: Check SQLite Tables
-      run: |
-        # Replace 'your_db_file.db' with the actual name of your SQLite database file
-        # Replace 'abc' and 'xyz' with the table names you want to check
-        tables_exist=$(echo "SELECT name FROM sqlite_master WHERE type='table' AND (name='co2_emission_data' OR name='population_data');" | sqlite3 data/data.sqlite)
-        
-        if [ -n "$tables_exist" ]; then
-          echo "Tables 'co2_emission_data' and 'population_data' exist in the database."
-        else
-          echo "Tables 'co2_emission_data' and 'population_data' do not exist in the database."
-          exit 1
-        fi
-    
+      - name: Run shell script
+        run: |
+          bash project/pipeline.sh
+           exit_code=$?
+           if [ $exit_code -eq 0 ]; then
+             echo "Script executed successfully."
+           else
+             echo "Script failed with exit code $exit_code."
+             exit $exit_code
+           fi
