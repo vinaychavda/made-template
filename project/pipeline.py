@@ -4,6 +4,7 @@ import sqlite3
 import os
 import shutil
 import zipfile
+import platform
 
 # Constants
 DATA_SET_1 = 'thedevastator/global-fossil-co2-emissions-by-country-2002-2022/data'
@@ -11,7 +12,6 @@ DATA_SET_1_CSV_FILE_NAME = 'GCB2022v27_MtCO2_flat.csv'
 DATA_SET_1_FOLDER_NAME = 'co2_emission'
 DB_NAME = 'data.sqlite'
 DATA_SET_1_TABLE_NAME = 'co2_emission_data'
-
 
 DATA_SET_2 = 'iamsouravbanerjee/world-population-dataset'
 DATA_SET_2_CSV_FILE_NAME = 'world_population.csv'
@@ -64,16 +64,17 @@ def co2_pipeline():
         print("DataFrame is empty.")
 
     # Delete downloaded .zip file
-    zip_file_path = os.path.join(script_dir, DATA_SET_1_FOLDER_NAME + '.zip')
-    folder_path = os.path.join(script_dir, DATA_SET_1_FOLDER_NAME)
+    if platform.system() == 'Windows':
+        zip_file_path = os.path.join(script_dir, DATA_SET_1_FOLDER_NAME + '.zip')
+        folder_path = os.path.join(script_dir, DATA_SET_1_FOLDER_NAME)
 
-    try:
-        os.remove(zip_file_path)
-        print(f'Deleted {zip_file_path}')
-        shutil.rmtree(folder_path)
-        print(f'Deleted {folder_path}')
-    except Exception as e:
-        print(f"Error deleting files: {e}")
+        try:
+            os.remove(zip_file_path)
+            print(f'Deleted {zip_file_path}')
+            shutil.rmtree(folder_path)
+            print(f'Deleted {folder_path}')
+        except Exception as e:
+            print(f"Error deleting files: {e}")
 
 
 def population_pipeline():
@@ -117,12 +118,13 @@ def population_pipeline():
         print("DataFrame is empty.")
 
     # Delete downloaded .csv file
-    csv_file_path = os.path.join(script_dir, DATA_SET_2_CSV_FILE_NAME)
-    try:
-        os.remove(csv_file_path)
-        print(f'Deleted {csv_file_path}')
-    except Exception as e:
-        print(f"Error deleting files: {e}")
+    if platform.system() == 'Windows':
+        csv_file_path = os.path.join(script_dir, DATA_SET_2_CSV_FILE_NAME)
+        try:
+            os.remove(csv_file_path)
+            print(f'Deleted {csv_file_path}')
+        except Exception as e:
+            print(f"Error deleting files: {e}")
 
 
 if __name__ == "__main__":
@@ -134,4 +136,3 @@ if __name__ == "__main__":
 
     # Population Pipeline
     population_pipeline()
-
