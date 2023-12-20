@@ -9,5 +9,8 @@ def test_exercise(expected_output_file):
         return
 
 
-test_exercise('data/co2_emission_test1.db')
-test_exercise('data/population_data.db')
+current_directory = os.path.dirname(os.path.abspath(__file__))
+file_name = "../data/data.sqlite"
+file_path = os.path.join(current_directory, file_name)
+if __name__ == "__main__":
+    test_exercise(file_path)
