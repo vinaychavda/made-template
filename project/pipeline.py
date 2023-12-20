@@ -12,6 +12,7 @@ DATA_SET_1_FOLDER_NAME = 'co2_emission'
 DB_NAME = 'data.sqlite'
 DATA_SET_1_TABLE_NAME = 'co2_emission_data'
 
+
 DATA_SET_2 = 'iamsouravbanerjee/world-population-dataset'
 DATA_SET_2_CSV_FILE_NAME = 'world_population.csv'
 DATA_SET_2_TABLE_NAME = 'population_data'
