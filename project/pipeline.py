@@ -46,9 +46,13 @@ def co2_pipeline():
     extract_and_move_co2_data(DATA_SET_1_CSV_FILE_NAME + '.zip', DATA_SET_1_FOLDER_NAME + '.zip')
     df = pd.read_csv(DATA_SET_1_FOLDER_NAME + '/' + DATA_SET_1_CSV_FILE_NAME, encoding=encoding)
     print("Column Names:", df.columns)
+    df = df[df['Country'] != 'Global']
+    df = df[df['Country'] != 'International Transport']
     df = df.rename(columns={
         'ISO 3166-1 alpha-3': 'Country Code',
     })
+    df['Country'] = df['Country'].replace('USA', 'United States')
+    df['Country'] = df['Country'].replace('Viet Nam', 'Vietnam')
     df = df.query('Year >= 2015')
 
     if not df.empty:
@@ -65,14 +69,14 @@ def co2_pipeline():
 
     # Delete downloaded .zip file
     if platform.system() == 'Windows':
-        zip_file_path = os.path.join(script_dir, DATA_SET_1_FOLDER_NAME + '.zip')
-        folder_path = os.path.join(script_dir, DATA_SET_1_FOLDER_NAME)
+        zip_file_path = DATA_SET_1_FOLDER_NAME + '.zip'
+        # folder_path = os.path.join(script_dir, DATA_SET_1_FOLDER_NAME)
 
         try:
             os.remove(zip_file_path)
             print(f'Deleted {zip_file_path}')
-            shutil.rmtree(folder_path)
-            print(f'Deleted {folder_path}')
+            # shutil.rmtree(folder_path)
+            # print(f'Deleted {folder_path}')
         except Exception as e:
             print(f"Error deleting files: {e}")
 
@@ -102,7 +106,8 @@ def population_pipeline():
         '1970 Population': '1970',
     })
     df = reshape_population_data(df_without_clean)
-
+    df['Population'] = df['Population'] / 1e9
+    df['Population'] = df['Population'].round(2)
     print("Column Names:", df.columns)
 
     if not df.empty:
@@ -119,7 +124,7 @@ def population_pipeline():
 
     # Delete downloaded .csv file
     if platform.system() == 'Windows':
-        csv_file_path = os.path.join(script_dir, DATA_SET_2_CSV_FILE_NAME)
+        csv_file_path = DATA_SET_2_CSV_FILE_NAME
         try:
             os.remove(csv_file_path)
             print(f'Deleted {csv_file_path}')
