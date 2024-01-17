@@ -1,5 +1,5 @@
 [![Project Work 3 Kaggle Export](https://github.com/vinaychavda/made-template/actions/workflows/project-test.yml/badge.svg)](https://github.com/vinaychavda/made-template/actions/workflows/project-test.yml)
-[![Python Version](https://img.shields.io/badge/Python-3.x.x-blue.svg)](https://www.python.org/downloads/release/python-3.x.x/)
+[![Python Version](https://img.shields.io/badge/Python-3.11.0-blue.svg)](https://www.python.org/downloads/release/python-3.x.x/)
 
 # Data Engineering and Analysis Pipeline
 
