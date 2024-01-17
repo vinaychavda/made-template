@@ -46,14 +46,14 @@ def co2_pipeline():
     extract_and_move_co2_data(DATA_SET_1_CSV_FILE_NAME + '.zip', DATA_SET_1_FOLDER_NAME + '.zip')
     df = pd.read_csv(DATA_SET_1_FOLDER_NAME + '/' + DATA_SET_1_CSV_FILE_NAME, encoding=encoding)
     print("Column Names:", df.columns)
-    # df = df[df['Country'] != 'Global']
-    # df = df[df['Country'] != 'International Transport']
     df = df.rename(columns={
         'ISO 3166-1 alpha-3': 'Country Code',
     })
     df['Country'] = df['Country'].replace('USA', 'United States')
     df['Country'] = df['Country'].replace('Viet Nam', 'Vietnam')
     df = df.query('Year >= 2015')
+    df = df[df['Country'] != 'Global']
+    df = df[df['Country'] != 'International Transport']
 
     if not df.empty:
         print("\nAfter dropping rows:")
