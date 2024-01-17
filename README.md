@@ -1,3 +1,4 @@
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Project Work 3 Kaggle Export](https://github.com/vinaychavda/made-template/actions/workflows/project-test.yml/badge.svg)](https://github.com/vinaychavda/made-template/actions/workflows/project-test.yml)
 [![Python Version](https://img.shields.io/badge/Python-3.11.0-blue.svg)](https://www.python.org/downloads/release/python-3.x.x/)
 
