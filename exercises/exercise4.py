@@ -63,22 +63,5 @@ if __name__ == '__main__':
         df = validate(df, column, lambda x: True)
     shutil.rmtree(data_path)
 
-    table = 'temperatures'
-    database = 'temperatures.sqlite'
-    df.to_sql(table, f'sqlite:///{database}', if_exists='replace', index=False, dtype={
-        'Geraet': BIGINT, 'Hersteller': TEXT, 'Model': TEXT, 'Monat': BIGINT,
-        'Temperatur': FLOAT, 'Batterietemperatur': FLOAT, 'Geraet aktiv': TEXT
-    })
-
-    current_directory = os.path.dirname(os.path.abspath(__file__))
-    file_name = "../exercises/temperatures.sqlite"
-    file_path = os.path.join(current_directory, file_name)
-    if os.path.isfile(file_path):
-        print(f"\t[SUCCESS] Found output file {file_path}")
-    else:
-        print(f"\t[ERROR] Can not find expected output file: {file_path}.")
-        raise FileNotFoundError(f'Failed to find output file {file_path}')
-
-
     print('Datapipeline finished successfully')
     print(f'Data is stored in table "{table}" in database "{database}"')
