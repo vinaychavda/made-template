@@ -61,7 +61,14 @@ if __name__ == '__main__':
     df = validate(df, validation_columns[0], lambda x: x > 0)
     for column in validation_columns[1:]:
         df = validate(df, column, lambda x: True)
-    shutil.rmtree(data_path)
 
+    table = 'temperatures'
+    database = 'temperatures.sqlite'
+    df.to_sql(table, f'sqlite:///{database}', if_exists='replace', index=False, dtype={
+        'Geraet': BIGINT, 'Hersteller': TEXT, 'Model': TEXT, 'Monat': BIGINT,
+        'Temperatur': FLOAT, 'Batterietemperatur': FLOAT, 'Geraet aktiv': TEXT
+    })
+
+    shutil.rmtree(data_path)
     print('Datapipeline finished successfully')
     print(f'Data is stored in table "{table}" in database "{database}"')
