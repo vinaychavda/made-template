@@ -71,7 +71,7 @@ if __name__ == '__main__':
     })
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
-    file_name = "../data/data.sqlite"
+    file_name = "../exercises/temperatures.sqlite"
     file_path = os.path.join(current_directory, file_name)
     if os.path.isfile(file_path):
         print(f"\t[SUCCESS] Found output file {file_path}")
