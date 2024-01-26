@@ -1,0 +1,69 @@
+pipeline Exercise5Pipeline {
+
+    constraint CoordianteRange oftype RangeConstraint {
+        lowerBound: -90;
+        lowerBoundInclusive: true;
+        upperBound: 90;
+        upperBoundInclusive: true;
+    }
+
+    valuetype CordinateFilter oftype decimal {
+        constraints: [CoordianteRange];
+    }
+
+    constraint Zone2001Range  oftype RangeConstraint {
+        lowerBound: 2001;
+        lowerBoundInclusive: true;
+        upperBound: 2001;
+        upperBoundInclusive: true;
+    }
+
+    valuetype ZoneFilter oftype integer {
+        constraints: [Zone2001Range];
+    }
+
+    block Exercise5ZipExtractor oftype HttpExtractor {
+        url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
+    }
+
+    block ZipArchiveInterpreter oftype ArchiveInterpreter {
+        archiveType: "zip";
+    }
+
+    block Exercise5FilePicker oftype FilePicker {
+        path: "/stops.txt";
+    }
+
+    block Exercise5TextFileInterpreter oftype TextFileInterpreter {
+        encoding: "utf8";
+    }
+
+    block Exercise5CSVInterpreter oftype CSVInterpreter {
+        delimiter: ",";
+        enclosing: '"';
+    }
+
+    block Exercise5TableInterpreter oftype TableInterpreter {
+        header: true;
+        columns: [
+            "stop_id" oftype integer,
+            "stop_name" oftype text,
+            "stop_lat" oftype CordinateFilter,
+            "stop_lon" oftype CordinateFilter,
+            "zone_id" oftype ZoneFilter,
+        ];
+    }
+
+    block Exercise5SQLiteLoader oftype SQLiteLoader {
+        table: "stops";
+        file: "./gtfs.sqlite";
+    }
+
+    Exercise5ZipExtractor
+        -> ZipArchiveInterpreter
+        -> Exercise5FilePicker
+        -> Exercise5TextFileInterpreter
+        -> Exercise5CSVInterpreter
+        -> Exercise5TableInterpreter
+        -> Exercise5SQLiteLoader;
+}

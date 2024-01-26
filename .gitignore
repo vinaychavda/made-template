@@ -11,5 +11,4 @@ kaggle.json
 *.pyc
 /exercises/extracted_data/*
 /exercises/extracted_data/.gitkeep
-/exercises/airports.sqlite
-exercises/temperatures.sqlite
+exercises/*.sqlite
