@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pip install --upgrade pip
-pip install -r ./project/requirements.txt
-python project/pipeline.py
-python project/test_project.py
+pip3 install --upgrade pip
+pip3 install -r requirements.txt
+python3 pipeline.py
+python3 test_project.py

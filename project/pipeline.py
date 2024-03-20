@@ -68,7 +68,7 @@ def co2_pipeline():
         print("DataFrame is empty.")
 
     # Delete downloaded .zip file
-    if platform.system() == 'Windows':
+    if platform.system() == 'Windows' or (platform.system() == 'Darwin'):
         zip_file_path = DATA_SET_1_FOLDER_NAME + '.zip'
         # folder_path = os.path.join(script_dir, DATA_SET_1_FOLDER_NAME)
 
@@ -123,7 +123,7 @@ def population_pipeline():
         print("DataFrame is empty.")
 
     # Delete downloaded .csv file
-    if platform.system() == 'Windows':
+    if platform.system() == 'Windows' or (platform.system() == 'Darwin'):
         csv_file_path = DATA_SET_2_CSV_FILE_NAME
         try:
             os.remove(csv_file_path)
