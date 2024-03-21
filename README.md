@@ -51,7 +51,7 @@ import platform
 
 # How to Run
 
-Run the pipeline: Execute [pipeline.sh](./project/pipeline.sh) to test the project.
+Run the pipeline: Execute [pipeline.sh](pipeline.sh) to test the project.
 
 Explore the analysis: Refer to [report.ipynb](./project/report.ipynb) for a detailed description of the analysis and code.
 
