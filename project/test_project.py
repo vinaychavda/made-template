@@ -1,16 +1,18 @@
+import unittest
 import os
 
 
-def test_exercise(expected_output_file):
-    if os.path.isfile(expected_output_file):
-        print(f"\t[SUCCESS] Found output file {expected_output_file}")
-    else:
-        print(f"\t[ERROR] Can not find expected output file: {expected_output_file}.")
-        return
+class TestDataSqliteIsExistOrNot(unittest.TestCase):
+    def test_data_sqlite_existence(self):
+        # Get the current directory of the script
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+
+        # Construct the path to the data.sqlite file
+        sqlite_file_path = os.path.join(current_directory, '..', 'data', 'data.sqlite')
+
+        # Check if the file exists
+        self.assertTrue(os.path.isfile(sqlite_file_path), "data.sqlite does not exist in the data folder.")
 
 
-current_directory = os.path.dirname(os.path.abspath(__file__))
-file_name = "data/data.sqlite"
-file_path = os.path.join(current_directory, file_name)
 if __name__ == "__main__":
-    test_exercise(file_path)
+    unittest.main()
