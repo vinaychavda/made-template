@@ -12,6 +12,8 @@ class TestDataSqliteIsExistOrNot(unittest.TestCase):
 
         # Check if the file exists
         self.assertTrue(os.path.isfile(sqlite_file_path), "data.sqlite does not exist in the data folder.")
+        if os.path.isfile(sqlite_file_path):
+            print('data.sqlite exists.')
 
 
 if __name__ == "__main__":
